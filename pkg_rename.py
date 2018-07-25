@@ -103,7 +103,7 @@ def renamePkg(pkg_file_path):
 				if (os.path.split(pkg_file_path)[1] == format_out):
 					print '  Skipped, same filename already set.'
 				else:
-					pkg_new_file_path = os.path.dirname(os.path.abspath(pkg_file_path)) + '\\' + format_out
+					pkg_new_file_path = os.path.join(os.path.dirname(os.path.abspath(pkg_file_path)), format_out)
 					if os.path.exists(pkg_new_file_path):
 						raise pkg_parser.MyError('file \''+pkg_new_file_path+'\' already exists!')
 					else:
