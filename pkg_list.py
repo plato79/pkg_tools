@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 ## pkg_list by n1ghty
 REL_VERSION = 'v1.1.2'
 
