@@ -217,6 +217,10 @@ def getPkgInfo(pkg_file_path):
 				region = 'UNKNOWN'
 			pkg_info['REGION'] = region
 
+                        # file name
+
+                        pkg_info['FILE_NAME'] = pkg_file_path
+
 			# readable system version number
 			if ('SYSTEM_VER' in pkg_info):
 				pkg_info['SYS_VER'] = '{}.{}'.format(pkg_info['SYSTEM_VER'][0], pkg_info['SYSTEM_VER'][1:3])
