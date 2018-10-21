@@ -23,7 +23,7 @@ parser.add_argument('-s', dest='sort', help='sort list by specific column')
 parser.add_argument('-d', dest='descending', action='store_true', help='use descending sorting')
 parser.add_argument('-o', dest='outfile', type=unicode, help='specify the output file name (without suffix)')
 
-parser.set_defaults(column=['TITLE', 'TITLE_ID', 'REGION', 'VER', 'CONTENT_ID', 'SIZE'], outfile='pkg_list')
+parser.set_defaults(column=['TITLE', 'TITLE_ID', 'REGION', 'VER', 'CONTENT_ID', 'FILE_NAME', 'SIZE'], outfile='pkg_list')
 
 try:
 	args = parser.parse_args()
