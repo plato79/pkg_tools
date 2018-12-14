@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 ## pkg_list by n1ghty
-REL_VERSION = 'v1.1.2'
+REL_VERSION = 'v1.1.3'
 
-import sys, os, struct, traceback, xlsxwriter, argparse
+import sys, os, struct, traceback, xlsxwriter, argparse, json
 from lib import pkg_parser, xlsxlist, common
 
 print 'pkg_tools / pkg_list ' + REL_VERSION + ' by n1ghty'
@@ -19,11 +19,12 @@ parser = argparse.ArgumentParser(
 parser.add_argument('pkg_path', type=unicode, nargs='+', help='the path(s) to scan for pkg files')
 parser.add_argument('-r', dest='recursive', action='store_true', help='include subdirectories')
 parser.add_argument('-c', dest='column', nargs='+', help='specify the columns')
-parser.add_argument('-s', dest='sort', help='sort list by specific column')
+parser.add_argument('-s', dest='sort', help='sort list by specific column (default by TITLE_ID)')
 parser.add_argument('-d', dest='descending', action='store_true', help='use descending sorting')
+parser.add_argument('-t', dest='type', help='type of file (xls or json)')
 parser.add_argument('-o', dest='outfile', type=unicode, help='specify the output file name (without suffix)')
 
-parser.set_defaults(column=['TITLE', 'TITLE_ID', 'REGION', 'VER', 'CONTENT_ID', 'FILE_NAME', 'SIZE'], outfile='pkg_list')
+parser.set_defaults(column=['TITLE', 'TITLE_ID', 'REGION', 'VER', 'CONTENT_ID', 'FILE_NAME', 'SIZE'], outfile='pkg_list', type = 'xls', sort='TITLE_ID')
 
 try:
 	args = parser.parse_args()
@@ -102,5 +103,9 @@ if args.sort and (args.sort in args.column):
 # sort errorlist
 pkgInfos['err'] = sorted(pkgInfos['err'])
 
-# generate xlsx list
-xlsxlist.writeFile(pkgInfos, args.column, args.outfile)
+if args.type == 'json':
+	with open(args.outfile+'.json','w') as outfile:
+		json.dump(pkgInfos,outfile)
+else:
+	# generate xlsx list
+	xlsxlist.writeFile(pkgInfos, args.column, args.outfile)
