@@ -47,8 +47,9 @@ optional arguments:
   -r                    include subdirectories
   -c COLUMN [COLUMN ...]
                         specify the columns
-  -s SORT               sort list by specific column
+  -s SORT               sort list by specific column (default by TITLE_ID)
   -d                    use descending sorting
+  -t                    type of file (xls or json)
   -o OUTFILE            specify the output file name (without suffix)
 ```
 
